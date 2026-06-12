@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星命趣学 · 知命而行</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 背景装饰 -->
+  <div class="bg-decoration">
+    <div class="star" style="--x:10%;--y:15%;--s:3px;--d:2s"></div>
+    <div class="star" style="--x:25%;--y:30%;--s:2px;--d:3s"></div>
+    <div class="star" style="--x:40%;--y:10%;--s:4px;--d:1.5s"></div>
+    <div class="star" style="--x:60%;--y:20%;--s:2px;--d:2.5s"></div>
+    <div class="star" style="--x:75%;--y:35%;--s:3px;--d:4s"></div>
+    <div class="star" style="--x:85%;--y:12%;--s:2px;--d:1s"></div>
+    <div class="star" style="--x:90%;--y:40%;--s:4px;--d:3.5s"></div>
+    <div class="star" style="--x:15%;--y:60%;--s:2px;--d:2s"></div>
+    <div class="star" style="--x:50%;--y:70%;--s:3px;--d:3s"></div>
+    <div class="star" style="--x:70%;--y:55%;--s:2px;--d:1.8s"></div>
+  </div>
+
+  <!-- 顶部导航 -->
+  <nav class="nav-bar">
+    <div class="nav-logo">
+      <span class="logo-icon">☯</span>
+      <span class="logo-text">星命趣学</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" data-page="home" onclick="showPage('home')">首页</button>
+      <button class="nav-tab" data-page="bazi" onclick="showPage('bazi')">八字星盘</button>
+      <button class="nav-tab" data-page="xingge" onclick="showPage('xingge')">性格探索</button>
+      <button class="nav-tab" data-page="guoxue" onclick="showPage('guoxue')">趣味国学</button>
+      <button class="nav-tab" data-page="aichat" onclick="showPage('aichat')">智慧书斋</button>
+      <button class="nav-tab" data-page="profile" onclick="showPage('profile')">我的</button>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-login" onclick="showPage('profile')">登录 / 注册</button>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main class="main-content">
+
+    <!-- 首页 -->
+    <div id="page-home" class="page active">
+      <div class="hero-section">
+        <div class="hero-badge">✦ 知命而行，顺天应时 ✦</div>
+        <h1 class="hero-title">星命趣学</h1>
+        <p class="hero-subtitle">融合八字·紫微·MBTI·趣味国学的综合探索平台</p>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="showPage('bazi')">开始探索命盘</button>
+          <button class="btn-secondary" onclick="showPage('guoxue')">趣味国学</button>
+        </div>
+      </div>
+
+      <!-- 功能卡片 -->
+      <div class="features-grid">
+        <div class="feature-card" onclick="showPage('bazi')">
+          <div class="feature-icon">⭐</div>
+          <h3>八字星盘</h3>
+          <p>输入生辰八字，解读命理格局、运势流年与性格特质</p>
+          <span class="feature-tag">命理分析</span>
+        </div>
+        <div class="feature-card" onclick="showPage('bazi')">
+          <div class="feature-icon">🌌</div>
+          <h3>紫微宫格</h3>
+          <p>十二宫排盘，展示命宫、财帛、官禄等人生关键宫位</p>
+          <span class="feature-tag">紫微斗数</span>
+        </div>
+        <div class="feature-card" onclick="showPage('xingge')">
+          <div class="feature-icon">🧬</div>
+          <h3>MBTI相遇</h3>
+          <p>十六型人格与八字命理跨界融合，探索深层自我</p>
+          <span class="feature-tag">性格探索</span>
+        </div>
+        <div class="feature-card" onclick="showPage('guoxue')">
+          <div class="feature-icon">🀄</div>
+          <h3>节气签</h3>
+          <p>二十四节气轮转抽签，每签一条国学智慧</p>
+          <span class="feature-tag">每日一签</span>
+        </div>
+        <div class="feature-card" onclick="showPage('guoxue')">
+          <div class="feature-icon">🧭</div>
+          <h3>八卦罗盘</h3>
+          <p>手机陀螺仪实时测方位，提供方位宜忌与古典解读</p>
+          <span class="feature-tag">风水方位</span>
+        </div>
+        <div class="feature-card" onclick="showPage('aichat')">
+          <div class="feature-icon">📜</div>
+          <h3>智慧书斋</h3>
+          <p>AI国学大师，解答命理疑惑、讲解古典智慧</p>
+          <span class="feature-tag">AI对话</span>
+        </div>
+      </div>
+
+      <!-- 今日节气 -->
+      <div class="today-section">
+        <div class="today-card">
+          <div class="today-header">
+            <span class="today-icon">☀️</span>
+            <span id="today-date" class="today-date"></span>
+            <span id="today-jieqi" class="today-jieqi"></span>
+          </div>
+          <div class="today-quote" id="today-quote">「天行健，君子以自强不息」</div>
+          <div class="today-source">— 《周易·乾卦》</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 八字星盘页 -->
+    <div id="page-bazi" class="page">
+      <div class="page-header">
+        <h2>⭐ 八字星盘</h2>
+        <p class="page-desc">输入您的生辰信息，解读专属命理格局</p>
+      </div>
+
+      <div class="bazi-layout">
+        <!-- 输入区 -->
+        <div class="bazi-input-card">
+          <h3>📅 生辰录入</h3>
+          <div class="form-row">
+            <label>出生日期</label>
+            <input type="date" id="birth-date" class="form-input" value="1995-06-15">
+          </div>
+          <div class="form-row">
+            <label>出生时辰</label>
+            <select id="birth-hour" class="form-input">
+              <option value="0">子时 (23:00-01:00)</option>
+              <option value="1">丑时 (01:00-03:00)</option>
+              <option value="2">寅时 (03:00-05:00)</option>
+              <option value="3">卯时 (05:00-07:00)</option>
+              <option value="4">辰时 (07:00-09:00)</option>
+              <option value="5">巳时 (09:00-11:00)</option>
+              <option value="6" selected>午时 (11:00-13:00)</option>
+              <option value="7">未时 (13:00-15:00)</option>
+              <option value="8">申时 (15:00-17:00)</option>
+              <option value="9">酉时 (17:00-19:00)</option>
+              <option value="10">戌时 (19:00-21:00)</option>
+              <option value="11">亥时 (21:00-23:00)</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>性别</label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="gender" value="male" checked> 男</label>
+              <label class="radio-label"><input type="radio" name="gender" value="female"> 女</label>
+            </div>
+          </div>
+          <button class="btn-primary full-width" onclick="calculateBazi()">🔮 排盘解命</button>
+        </div>
+
+        <!-- 八字展示 -->
+        <div id="bazi-result" class="bazi-result-card">
+          <h3>🌟 八字命盘</h3>
+          <div class="bazi-pillars" id="bazi-pillars">
+            <div class="pillar">
+              <div class="pillar-label">年柱</div>
+              <div class="pillar-tian" id="year-tian">乙</div>
+              <div class="pillar-di" id="year-di">亥</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-label">月柱</div>
+              <div class="pillar-tian" id="month-tian">壬</div>
+              <div class="pillar-di" id="month-di">午</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-label">日柱</div>
+              <div class="pillar-tian day-master" id="day-tian">甲</div>
+              <div class="pillar-di" id="day-di">子</div>
+            </div>
+            <div class="pillar">
+              <div class="pillar-label">时柱</div>
+              <div class="pillar-tian" id="hour-tian">丙</div>
+              <div class="pillar-di" id="hour-di">午</div>
+            </div>
+          </div>
+
+          <!-- 五行分析 -->
+          <div class="wuxing-section">
+            <h4>五行分布</h4>
+            <div class="wuxing-bars" id="wuxing-bars">
+              <div class="wuxing-item">
+                <span class="wx-label wood">木</span>
+                <div class="wx-bar"><div class="wx-fill wood" style="width:30%"></div></div>
+                <span class="wx-val">3</span>
+              </div>
+              <div class="wuxing-item">
+                <span class="wx-label fire">火</span>
+                <div class="wx-bar"><div class="wx-fill fire" style="width:25%"></div></div>
+                <span class="wx-val">2</span>
+              </div>
+              <div class="wuxing-item">
+                <span class="wx-label earth">土</span>
+                <div class="wx-bar"><div class="wx-fill earth" style="width:10%"></div></div>
+                <span class="wx-val">1</span>
+              </div>
+              <div class="wuxing-item">
+                <span class="wx-label metal">金</span>
+                <div class="wx-bar"><div class="wx-fill metal" style="width:15%"></div></div>
+                <span class="wx-val">1</span>
+              </div>
+              <div class="wuxing-item">
+                <span class="wx-label water">水</span>
+                <div class="wx-bar"><div class="wx-fill water" style="width:20%"></div></div>
+                <span class="wx-val">2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 紫微宫格 -->
+      <div class="ziwei-section">
+        <h3>🌌 紫微宫格</h3>
+        <div class="ziwei-grid" id="ziwei-grid">
+          <!-- 宫格由JS生成 -->
+        </div>
+      </div>
+
+      <!-- 命理解读 -->
+      <div class="interpretation-card">
+        <h3>📖 命理解读</h3>
+        <div class="interp-tabs">
+          <button class="interp-tab active" onclick="switchInterp('personality', this)">性格特质</button>
+          <button class="interp-tab" onclick="switchInterp('career', this)">事业财运</button>
+          <button class="interp-tab" onclick="switchInterp('love', this)">感情婚姻</button>
+          <button class="interp-tab" onclick="switchInterp('health', this)">健康宜忌</button>
+        </div>
+        <div class="interp-content" id="interp-content">
+          <div class="interp-section" id="interp-personality">
+            <p>🌟 <strong>日主甲木</strong>，为「参天大树」之象，性格正直开朗，有进取心与领导力，时而固执己见，但绝不失信于人。</p>
+            <p>✨ 年柱乙亥，带有一丝阴柔与变通，令您在坚持原则的同时，也能灵活处世，左右逢源。</p>
+            <p>💫 整体格局：食神格，思维活跃，才华横溢，尤善表达与创造，适合文艺、教育、策划类工作。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 性格探索页 -->
+    <div id="page-xingge" class="page">
+      <div class="page-header">
+        <h2>🧬 性格探索</h2>
+        <p class="page-desc">MBTI × 八字命理，双维度解读你的人格密码</p>
+      </div>
+
+      <div class="mbti-section">
+        <div class="mbti-selector">
+          <h3>选择你的MBTI类型</h3>
+          <div class="mbti-grid" id="mbti-grid">
+            <!-- 16型人格由JS生成 -->
+          </div>
+        </div>
+        <div class="mbti-result" id="mbti-result">
+          <div class="mbti-placeholder">
+            <div class="placeholder-icon">🧬</div>
+            <p>请从左侧选择你的MBTI类型，或完成问卷测试</p>
+            <button class="btn-secondary" onclick="startMBTITest()">开始测试</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 命盘MBTI融合 -->
+      <div class="fusion-card" id="fusion-card" style="display:none">
+        <h3>⚡ 八字 × MBTI 融合解读</h3>
+        <div class="fusion-content" id="fusion-content"></div>
+      </div>
+    </div>
+
+    <!-- 趣味国学页 -->
+    <div id="page-guoxue" class="page">
+      <div class="page-header">
+        <h2>🀄 趣味国学</h2>
+        <p class="page-desc">在古典智慧中，探索有趣的灵魂</p>
+      </div>
+
+      <div class="guoxue-modules">
+        <!-- 节气签 -->
+        <div class="module-card jieqi-module">
+          <div class="module-header">
+            <span class="module-icon">🌸</span>
+            <h3>节气签</h3>
+            <span class="module-badge">每日一签</span>
+          </div>
+          <div class="jieqi-display">
+            <div class="jieqi-wheel" id="jieqi-wheel">
+              <div class="wheel-center">
+                <div class="wheel-season" id="current-jieqi-name">芒种</div>
+                <div class="wheel-date" id="current-jieqi-date">六月</div>
+              </div>
+            </div>
+            <div class="jieqi-fortune" id="jieqi-fortune">
+              <div class="fortune-number">第 <span id="fortune-num">廿三</span> 签</div>
+              <div class="fortune-title" id="fortune-title">上上签 · 守望春风</div>
+              <div class="fortune-text" id="fortune-text">「芒种逢时，种瓜得瓜。不怠惰，不急功，循天时而动，自有丰收之日。」</div>
+              <div class="fortune-advice">
+                <span class="advice-item good">宜：持续努力</span>
+                <span class="advice-item good">宜：静待时机</span>
+                <span class="advice-item bad">忌：急于求成</span>
+              </div>
+              <button class="btn-shake" onclick="shakeFortune()">🎋 摇签求卦</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 指尖导引 -->
+        <div class="module-card zhidao-module">
+          <div class="module-header">
+            <span class="module-icon">🤲</span>
+            <h3>指尖导引</h3>
+            <span class="module-badge">掌纹解读</span>
+          </div>
+          <div class="palm-display">
+            <div class="palm-svg-container">
+              <svg viewBox="0 0 200 250" width="180" class="palm-svg">
+                <!-- 手掌轮廓 -->
+                <path d="M60,220 Q40,200 35,170 Q30,140 32,110 Q34,80 40,60 Q50,35 65,30 Q75,27 82,35 Q88,42 88,55 L88,100" 
+                      fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <path d="M88,55 Q88,30 95,25 Q102,20 110,25 Q118,30 118,50 L118,95" 
+                      fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <path d="M118,50 Q118,25 125,22 Q132,19 140,25 Q148,32 146,55 L142,100" 
+                      fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <path d="M142,55 Q142,35 150,32 Q158,29 165,38 Q170,48 166,70 L158,110" 
+                      fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <path d="M60,220 Q100,240 140,220 L158,110 L142,100 L118,95 L88,100 L40,110 Q32,110 35,170" 
+                      fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <!-- 生命线 -->
+                <path d="M82,80 Q65,120 68,180" fill="none" stroke="#e07070" stroke-width="1.5" id="lifeline"/>
+                <!-- 感情线 -->
+                <path d="M95,75 Q130,65 158,75" fill="none" stroke="#e07070" stroke-width="1.5"/>
+                <!-- 智慧线 -->
+                <path d="M82,85 Q110,105 145,98" fill="none" stroke="#e07070" stroke-width="1.5"/>
+                <!-- 事业线 -->
+                <path d="M103,170 Q105,130 108,95" fill="none" stroke="#e07070" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <!-- 标注点 -->
+                <circle cx="82" cy="80" r="4" fill="#c0392b" opacity="0.7"/>
+                <circle cx="158" cy="75" r="4" fill="#c0392b" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="palm-info">
+              <div class="palm-lines">
+                <div class="palm-line active" onclick="showPalmLine('life', this)">
+                  <span class="line-dot red"></span>生命线
+                </div>
+                <div class="palm-line" onclick="showPalmLine('emotion', this)">
+                  <span class="line-dot red"></span>感情线
+                </div>
+                <div class="palm-line" onclick="showPalmLine('wisdom', this)">
+                  <span class="line-dot red"></span>智慧线
+                </div>
+                <div class="palm-line" onclick="showPalmLine('career', this)">
+                  <span class="line-dot red"></span>事业线
+                </div>
+              </div>
+              <div class="palm-desc" id="palm-desc">
+                生命线清晰深长，弧度优美，代表体质强健、生命力旺盛，一生历经风浪却始终保持活力。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 八卦罗盘 -->
+        <div class="module-card luopan-module">
+          <div class="module-header">
+            <span class="module-icon">🧭</span>
+            <h3>八卦罗盘</h3>
+            <span class="module-badge">方位宜忌</span>
+          </div>
+          <div class="luopan-display">
+            <div class="compass-container">
+              <div class="compass" id="compass">
+                <div class="compass-ring outer-ring">
+                  <span style="--r:0deg">坎</span>
+                  <span style="--r:45deg">艮</span>
+                  <span style="--r:90deg">震</span>
+                  <span style="--r:135deg">巽</span>
+                  <span style="--r:180deg">离</span>
+                  <span style="--r:225deg">坤</span>
+                  <span style="--r:270deg">兑</span>
+                  <span style="--r:315deg">乾</span>
+                </div>
+                <div class="compass-ring direction-ring">
+                  <span style="--r:0deg">北</span>
+                  <span style="--r:45deg">东北</span>
+                  <span style="--r:90deg">东</span>
+                  <span style="--r:135deg">东南</span>
+                  <span style="--r:180deg">南</span>
+                  <span style="--r:225deg">西南</span>
+                  <span style="--r:270deg">西</span>
+                  <span style="--r:315deg">西北</span>
+                </div>
+                <div class="compass-needle" id="needle">
+                  <div class="needle-north"></div>
+                  <div class="needle-south"></div>
+                </div>
+                <div class="compass-center">☯</div>
+              </div>
+            </div>
+            <div class="direction-info" id="direction-info">
+              <div class="dir-result">
+                <strong>当前朝向：</strong><span id="current-dir">正北</span>（坎卦）
+              </div>
+              <div class="dir-advice">
+                <p>🔵 <strong>坎卦</strong>主水，象征智慧流动。</p>
+                <p>✅ 宜：思考规划、学习进修</p>
+                <p>❌ 忌：贸然行动、情绪冲动</p>
+              </div>
+              <button class="btn-secondary" onclick="requestCompass()">📍 获取方位</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 花水宫言 -->
+        <div class="module-card huashui-module">
+          <div class="module-header">
+            <span class="module-icon">🌺</span>
+            <h3>花水宫言</h3>
+            <span class="module-badge">人体穴位</span>
+          </div>
+          <div class="body-display">
+            <div class="body-selector">
+              <button class="body-btn active" onclick="switchBodyView('front', this)">正面</button>
+              <button class="body-btn" onclick="switchBodyView('hand', this)">手部</button>
+              <button class="body-btn" onclick="switchBodyView('face', this)">面部</button>
+            </div>
+            <div id="body-view" class="body-view">
+              <svg viewBox="0 0 180 320" width="150" class="body-svg" id="body-svg">
+                <!-- 人体正面 -->
+                <!-- 头部 -->
+                <circle cx="90" cy="40" r="30" fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <!-- 颈部 -->
+                <rect x="80" y="68" width="20" height="20" fill="#f5deb3" stroke="#c4956a" stroke-width="1.5"/>
+                <!-- 躯干 -->
+                <path d="M55,88 L125,88 L130,200 L50,200 Z" fill="#f5deb3" stroke="#c4956a" stroke-width="2"/>
+                <!-- 左臂 -->
+                <path d="M55,90 Q35,110 30,150 Q28,170 33,185" fill="none" stroke="#c4956a" stroke-width="14" stroke-linecap="round"/>
+                <!-- 右臂 -->
+                <path d="M125,90 Q145,110 150,150 Q152,170 147,185" fill="none" stroke="#c4956a" stroke-width="14" stroke-linecap="round"/>
+                <!-- 左腿 -->
+                <path d="M70,200 Q65,250 62,290" fill="none" stroke="#c4956a" stroke-width="16" stroke-linecap="round"/>
+                <!-- 右腿 -->
+                <path d="M110,200 Q115,250 118,290" fill="none" stroke="#c4956a" stroke-width="16" stroke-linecap="round"/>
+                <!-- 穴位点 -->
+                <circle cx="90" cy="30" r="5" fill="#e74c3c" opacity="0.8" class="acupoint" onclick="showAcupoint('百会', '头顶正中，具有开窍宁神、平肝熄风功效。宜揉按，忌用力敲击。', this)"/>
+                <circle cx="90" cy="115" r="5" fill="#e74c3c" opacity="0.8" class="acupoint" onclick="showAcupoint('膻中', '胸骨中央，主气海，宽胸理气、活血通络。常按可缓解胸闷。', this)"/>
+                <circle cx="90" cy="155" r="5" fill="#e74c3c" opacity="0.8" class="acupoint" onclick="showAcupoint('神阙', '肚脐，生命根本穴，温阳补肾、培元固本。艾灸效果最佳。', this)"/>
+                <circle cx="68" cy="175" r="4" fill="#e74c3c" opacity="0.8" class="acupoint" onclick="showAcupoint('关元', '小腹中线，男女同用，补益元气、温肾固精。', this)"/>
+                <circle cx="38" cy="145" r="4" fill="#3498db" opacity="0.8" class="acupoint" onclick="showAcupoint('内关', '手腕内侧，调节心律，缓解恶心。常按可宁心安神。', this)"/>
+                <circle cx="142" cy="145" r="4" fill="#3498db" opacity="0.8" class="acupoint" onclick="showAcupoint('合谷', '虎口处，万能穴，止痛、退烧、通经络。', this)"/>
+                <circle cx="62" cy="270" r="4" fill="#27ae60" opacity="0.8" class="acupoint" onclick="showAcupoint('足三里', '膝盖下三寸，强壮保健要穴，调脾胃、补气血。', this)"/>
+                <circle cx="118" cy="270" r="4" fill="#27ae60" opacity="0.8" class="acupoint" onclick="showAcupoint('涌泉', '足底前1/3，肾经要穴，滋阴降火，引火归元。', this)"/>
+              </svg>
+            </div>
+            <div class="acupoint-info" id="acupoint-info">
+              <div class="acupoint-name" id="acupoint-name">点击穴位查看详情</div>
+              <div class="acupoint-desc" id="acupoint-desc">红色穴位为任脉要穴，蓝色为手部穴位，绿色为腿部穴位</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 智慧书斋 AI对话 -->
+    <div id="page-aichat" class="page">
+      <div class="page-header">
+        <h2>📜 智慧书斋</h2>
+        <p class="page-desc">与AI国学大师对话，探寻古典智慧</p>
+      </div>
+
+      <div class="chat-layout">
+        <div class="chat-sidebar">
+          <h4>选择角色</h4>
+          <div class="role-list">
+            <div class="role-item active" onclick="selectRole('命理大师', '🔮', this)">
+              <span class="role-icon">🔮</span>
+              <div class="role-info">
+                <div class="role-name">命理大师</div>
+                <div class="role-desc">精通八字、紫微斗数</div>
+              </div>
+            </div>
+            <div class="role-item" onclick="selectRole('国学先生', '📚', this)">
+              <span class="role-icon">📚</span>
+              <div class="role-info">
+                <div class="role-name">国学先生</div>
+                <div class="role-desc">四书五经、经史子集</div>
+              </div>
+            </div>
+            <div class="role-item" onclick="selectRole('风水堪舆师', '🧭', this)">
+              <span class="role-icon">🧭</span>
+              <div class="role-info">
+                <div class="role-name">风水堪舆师</div>
+                <div class="role-desc">风水布局、方位宜忌</div>
+              </div>
+            </div>
+            <div class="role-item" onclick="selectRole('易经占卜师', '☯', this)">
+              <span class="role-icon">☯</span>
+              <div class="role-info">
+                <div class="role-name">易经占卜师</div>
+                <div class="role-desc">六十四卦、周易解析</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-main">
+          <div class="chat-messages" id="chat-messages">
+            <div class="message bot-message">
+              <div class="msg-avatar">🔮</div>
+              <div class="msg-bubble">
+                <p>贫道有礼了。吾乃命理大师，精通八字、紫微、六爻之术。</p>
+                <p>有何命理疑惑，请尽管开口相询。可问流年运势、婚恋事业、亦可探讨天道轮回。</p>
+              </div>
+            </div>
+          </div>
+          <div class="chat-suggestions">
+            <button class="suggestion-btn" onclick="sendSuggestion('我的2026年运势如何？')">2026年运势</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('解读一下我的命盘日主')">解读日主</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('今天适合谈感情吗？')">今日情感</button>
+            <button class="suggestion-btn" onclick="sendSuggestion('推荐一句国学格言')">国学格言</button>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="chat-input" class="chat-input" placeholder="向大师提问..." 
+                   onkeypress="handleChatEnter(event)">
+            <button class="btn-send" onclick="sendMessage()">发送</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 个人中心页 -->
+    <div id="page-profile" class="page">
+      <div class="page-header">
+        <h2>👤 个人中心</h2>
+        <p class="page-desc">管理您的命盘档案与历史记录</p>
+      </div>
+
+      <div class="profile-layout">
+        <div class="profile-card">
+          <div class="avatar-area">
+            <div class="avatar-circle">🌟</div>
+            <div class="user-info-text">
+              <h3 id="username">星命探索者</h3>
+              <p id="user-bazi-summary">日主甲木 · 食神格</p>
+            </div>
+          </div>
+          <div class="profile-stats">
+            <div class="stat-item">
+              <div class="stat-num">12</div>
+              <div class="stat-label">排盘次数</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">5</div>
+              <div class="stat-label">收藏命理</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">36</div>
+              <div class="stat-label">占卜记录</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="history-section">
+          <h3>📋 排盘历史</h3>
+          <div class="history-list">
+            <div class="history-item">
+              <div class="history-date">2026-06-12</div>
+              <div class="history-content">乙亥年 壬午月 甲子日 丙午时</div>
+              <div class="history-tag">自测</div>
+            </div>
+            <div class="history-item">
+              <div class="history-date">2026-06-10</div>
+              <div class="history-content">庚午年 丙申月 癸丑日 甲子时</div>
+              <div class="history-tag">朋友</div>
+            </div>
+            <div class="history-item">
+              <div class="history-date">2026-06-08</div>
+              <div class="history-content">甲寅年 庚子月 丁亥日 壬戌时</div>
+              <div class="history-tag">家人</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3>⚙️ 设置</h3>
+          <div class="settings-list">
+            <div class="setting-item">
+              <span>数据本地存储</span>
+              <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-item">
+              <span>启用PWA离线</span>
+              <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+            </div>
+            <div class="setting-item">
+              <span>AI功能（需API Key）</span>
+              <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 底部移动导航 -->
+  <nav class="bottom-nav">
+    <button class="bottom-tab active" onclick="showPage('home')">
+      <span class="bottom-icon">🏠</span>
+      <span>首页</span>
+    </button>
+    <button class="bottom-tab" onclick="showPage('bazi')">
+      <span class="bottom-icon">⭐</span>
+      <span>星盘</span>
+    </button>
+    <button class="bottom-tab" onclick="showPage('guoxue')">
+      <span class="bottom-icon">🀄</span>
+      <span>国学</span>
+    </button>
+    <button class="bottom-tab" onclick="showPage('aichat')">
+      <span class="bottom-icon">📜</span>
+      <span>书斋</span>
+    </button>
+    <button class="bottom-tab" onclick="showPage('profile')">
+      <span class="bottom-icon">👤</span>
+      <span>我的</span>
+    </button>
+  </nav>
+
+  <script src="app.js"></script>
+</body>
+</html>
